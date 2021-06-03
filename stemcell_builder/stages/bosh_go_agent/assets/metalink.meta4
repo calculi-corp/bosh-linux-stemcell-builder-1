@@ -1,11 +1,11 @@
 <metalink xmlns="urn:ietf:params:xml:ns:metalink">
   <file name="bosh-agent-2.346.0-linux-amd64">
-    <hash type="sha-512">dab84d9f373f7623bd8c26d196b10094517c032ca4d1d14ff693ab979d3c5ced09bdf3be3db77e69c9c0fbaeef2c2d60f4687e819aec9cb4593a58dc913f3fd4</hash>
-    <hash type="sha-256">a4190070c32aea02828e3bb20fe69143879d5d800fada7aa5ce0c22412643574</hash>
-    <hash type="sha-1">1c2e911ddaa6590fa949f4b5b5a7416729f2e8ba</hash>
-    <hash type="md5">9a0ebec18544362a5bbe127aaf46dc09</hash>
-    <size>17659878</size>
-    <url>https://s3-external-1.amazonaws.com/bosh-agent-binaries/bosh-agent-2.346.0-linux-amd64</url>
+    <hash type="sha-512">d68f2dc2e0d3aa3183b794cc2895278a65569a595b0a0b339f55314f675c15c3b9a10877b594577338dce76065f4acd4fbcee9c6c13c081e5e90cb46b07813a6</hash>
+    <hash type="sha-256">a04722847694693b652292ad0c87d423d2218763423008a2fa01f7c87392bd21</hash>
+    <hash type="sha-1">7f46456e31ad5f9c7d38fc86d9af51a6516fd955</hash>
+    <hash type="md5">fa767b99cbd0349b8a374f5a18db1c0f</hash>
+    <size>17572363</size>
+    <url>https://guide-rails-calculi-global.s3-us-west-2.amazonaws.com/bosh-agent/bosh-agent-2.346.0-linux-amd64</url>
     <version>2.346.0</version>
   </file>
   <file name="bosh-agent-2.346.0-windows-amd64.exe">
