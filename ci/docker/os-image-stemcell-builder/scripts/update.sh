@@ -33,7 +33,21 @@ apt-get update
 apt-get -y upgrade; apt-get clean
 
 DEBIAN_FRONTEND=noninteractive apt-get -y  -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade
-apt-get -y install curl
+#apt-get -y install curl
+apt install -y wget build-essential libcurl3 openssl libssl-dev libssh-dev zlib1g-dev libbrotli-dev brotli libkrb5-dev libldap2-dev librtmp-dev libpsl-dev libnghttp2-dev zlib1g-dev zlib1g
+wget https://curl.se/download/curl-7.72.0.tar.gz
+tar xzvf curl-7.72.0.tar.gz
+cd curl-7.72.0
+./configure --with-ssl --with-zlib --with-gssapi --enable-ldap --enable-ldaps --with-libssh --with-nghttp2
+make
+make install
+ldconfig
+echo "*************************************************************"
+echo "*************************************************************"
+echo "*************************************************************"
+echo "*************************************************************"
+echo "*************************************************************"
+curl --version
 
 # sometimes the cached lists seem to get out of date around here
 # http://askubuntu.com/questions/41605/trouble-downloading-packages-list-due-to-a-hash-sum-mismatch-error/160179
