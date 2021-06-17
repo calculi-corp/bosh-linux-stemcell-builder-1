@@ -78,13 +78,16 @@ run_in_chroot $chroot "
   cd /tmp
 
   if [ ${DISTRIB_CODENAME} == 'bionic' ]; then
-    apt install -y wget build-essential libcurl3 openssl libssl-dev libssh-dev zlib1g-dev libbrotli-dev brotli libkrb5-dev libldap2-dev librtmp-dev libpsl-dev libnghttp2-dev zlib1g-dev zlib1g
+    apt install -y wget build-essential openssl libssl-dev libssh-dev zlib1g-dev libbrotli-dev brotli libkrb5-dev libldap2-dev librtmp-dev libpsl-dev libnghttp2-dev zlib1g-dev zlib1g
     wget https://curl.se/download/curl-7.74.0.tar.gz
     tar xzvf curl-7.74.0.tar.gz
     cd curl-7.74.0
     ./configure --with-ssl --with-zlib --with-gssapi --enable-ldap --enable-ldaps --with-libssh --with-nghttp2
     make
     make install
+    if [ -f /usr/bin/curl ]; then
+      unlink /usr/bin/curl
+    fi
     ln -s /usr/local/bin/curl /usr/bin/curl
     ldconfig
     cd ..
