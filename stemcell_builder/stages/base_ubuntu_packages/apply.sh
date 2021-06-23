@@ -73,7 +73,7 @@ if [ ${DISTRIB_CODENAME} == 'bionic' ]; then
 fi
 
 # Due to a known bug with curl 7.58.0 (https://bugs.launchpad.net/ubuntu/+source/curl/+bug/1833198), which comes as the default curl version
-# for ubuntu-bionic, we will install curl 7.72.0
+# for ubuntu-bionic, we will install curl 7.74.0
 run_in_chroot $chroot "
   cd /tmp
 
