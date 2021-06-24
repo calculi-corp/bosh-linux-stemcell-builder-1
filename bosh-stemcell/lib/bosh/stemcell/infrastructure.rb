@@ -146,7 +146,7 @@ module Bosh::Stemcell
 
     class Google < Base
       def initialize
-        super(name: 'google', hypervisor: 'kvm', default_disk_size: 3072, disk_formats: ['rawdisk'], stemcell_formats: ['google-rawdisk'])
+        super(name: 'google', hypervisor: 'kvm', default_disk_size: 6144, disk_formats: ['rawdisk'], stemcell_formats: ['google-rawdisk'])
       end
 
       def additional_cloud_properties
