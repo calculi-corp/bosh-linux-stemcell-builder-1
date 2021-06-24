@@ -169,7 +169,7 @@ module Bosh::Stemcell
         super(
           name: 'azure',
           hypervisor: 'hyperv',
-          default_disk_size: 3072,
+          default_disk_size: 6144,
           disk_formats: ['vhd'],
           stemcell_formats: ['azure-vhd']
         )
