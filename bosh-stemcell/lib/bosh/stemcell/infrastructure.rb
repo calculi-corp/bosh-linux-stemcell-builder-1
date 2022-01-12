@@ -135,7 +135,7 @@ module Bosh::Stemcell
         super(
           name: 'aws',
           hypervisor: 'xen',
-          default_disk_size: 3072,
+          default_disk_size: 6144,
           disk_formats: ['raw'],
           stemcell_formats: ['aws-raw']
         )
