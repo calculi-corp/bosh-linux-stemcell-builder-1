@@ -91,8 +91,6 @@ shared_examples_for 'All Stemcells' do
       its (:stdout) do
         should eq(<<~FILELIST)
           50-default.conf
-          avoid-startup-deadlock.conf
-          enable-kernel-logging.conf
         FILELIST
       end
     end
@@ -119,6 +117,7 @@ HERE
       exclude_on_google: true,
       exclude_on_vcloud: true,
       exclude_on_vsphere: true,
+      exclude_on_cloudstack: true,
       exclude_on_azure: true,
       exclude_on_openstack: true,
     } do

@@ -20,6 +20,8 @@ module Bosh::Stemcell
           Azure.new
         when 'softlayer'
           Softlayer.new
+        when 'cloudstack'
+          CloudStack.new
         when 'null'
           NullInfrastructure.new
         else
@@ -81,6 +83,22 @@ module Bosh::Stemcell
       end
     end
 
+    class CloudStack < Base
+      def initialize
+        super(
+          name: 'cloudstack',
+          hypervisor: 'xen',
+          default_disk_size: 3072,
+          disk_formats: ['vhdx'],
+          stemcell_formats: ['cloudstack-vhdx']
+        )
+      end
+
+      def additional_cloud_properties
+        {'auto_disk_config' => true}
+      end
+    end
+
     class Vsphere < Base
       def initialize
         super(name: 'vsphere',
@@ -117,7 +135,7 @@ module Bosh::Stemcell
         super(
           name: 'aws',
           hypervisor: 'xen',
-          default_disk_size: 3072,
+          default_disk_size: 6144,
           disk_formats: ['raw'],
           stemcell_formats: ['aws-raw']
         )
@@ -156,7 +174,13 @@ module Bosh::Stemcell
 
     class Warden < Base
       def initialize
-        super(name: 'warden', hypervisor: 'boshlite', default_disk_size: 2048, disk_formats: ['files'], stemcell_formats: ['warden-tar'])
+        super(
+          name: 'warden',
+          hypervisor: 'boshlite',
+          default_disk_size: 2048,
+          disk_formats: ['files'],
+          stemcell_formats: ['warden-tar']
+        )
       end
 
       def additional_cloud_properties

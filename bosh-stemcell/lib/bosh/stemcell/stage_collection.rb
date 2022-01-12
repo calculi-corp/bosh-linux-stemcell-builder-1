@@ -37,6 +37,8 @@ module Bosh::Stemcell
                  aws_stages
                when Infrastructure::Alicloud then
                  alicloud_stages
+               when Infrastructure::CloudStack then
+                 cloudstack_stages
                when Infrastructure::Google then
                  google_stages
                when Infrastructure::OpenStack then
@@ -68,6 +70,8 @@ module Bosh::Stemcell
         ovf_package_stages
       when 'vhd' then
         vhd_package_stages
+      when 'vhdx' then
+        vhdx_package_stages
       when 'files' then
         files_package_stages
       end
@@ -91,6 +95,24 @@ module Bosh::Stemcell
         image_install_grub
       ]
     end
+
+    def cloudstack_stages
+      %i[
+        system_network
+        system_openstack_modules
+        bosh_cloudstack_ubuntu_vr_metadata
+        system_ubuntu_xen_tools
+        system_parameters
+        system_vhd_utils_tools
+        bosh_clean
+        bosh_harden
+        bosh_cloudstack_agent_settings
+        bosh_clean_ssh
+        image_create
+        image_install_grub
+      ]
+    end
+
 
     def vsphere_vcloud_stages
       [
@@ -234,7 +256,6 @@ module Bosh::Stemcell
         :bosh_sysstat,
         :system_kernel,
         :system_kernel_modules,
-        :system_ixgbevf,
         bosh_steps,
         :password_policies,
         :restrict_su_command,
@@ -293,6 +314,12 @@ module Bosh::Stemcell
     def vhd_package_stages
       [
         :prepare_vhd_image_stemcell,
+      ]
+    end
+
+    def vhdx_package_stages
+      [
+        :prepare_vhdx_image_stemcell,
       ]
     end
 

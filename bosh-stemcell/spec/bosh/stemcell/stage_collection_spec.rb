@@ -32,7 +32,6 @@ module Bosh::Stemcell
             :bosh_sysstat,
             :system_kernel,
             :system_kernel_modules,
-            :system_ixgbevf,
             :bosh_environment,
             :bosh_sysctl,
             :bosh_limits,
@@ -192,6 +191,36 @@ module Bosh::Stemcell
               :bosh_clean,
               :bosh_harden,
               :bosh_openstack_agent_settings,
+              :bosh_clean_ssh,
+              :image_create,
+              :image_install_grub,
+              :bosh_package_list
+            ]
+          )
+          expect(stage_collection.package_stemcell_stages('qcow2')).to eq(
+              [
+                :prepare_qcow2_image_stemcell,
+              ]
+          )
+        end
+      end
+
+      context 'when using CloudStack' do
+        let(:infrastructure) { Infrastructure.for('cloudstack') }
+        let(:operating_system) { OperatingSystem.for('ubuntu') }
+
+        it 'has the correct stages' do
+          expect(stage_collection.build_stemcell_image_stages).to eq(
+            [
+              :system_network,
+              :system_openstack_modules,
+              :bosh_cloudstack_ubuntu_vr_metadata,
+              :system_ubuntu_xen_tools,
+              :system_parameters,
+              :system_vhd_utils_tools,
+              :bosh_clean,
+              :bosh_harden,
+              :bosh_cloudstack_agent_settings,
               :bosh_clean_ssh,
               :image_create,
               :image_install_grub,

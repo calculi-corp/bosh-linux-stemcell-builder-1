@@ -13,6 +13,7 @@ module Bosh::Stemcell
         expect(Infrastructure.for('vcloud')).to be_a(Infrastructure::Vcloud)
         expect(Infrastructure.for('azure')).to be_a(Infrastructure::Azure)
         expect(Infrastructure.for('softlayer')).to be_a(Infrastructure::Softlayer)
+        expect(Infrastructure.for('cloudstack')).to be_a(Infrastructure::CloudStack)
         expect(Infrastructure.for('null')).to be_an(Infrastructure::NullInfrastructure)
       end
 
@@ -25,10 +26,10 @@ module Bosh::Stemcell
   end
 
   describe Infrastructure::Base do
-    it 'requires a name, hypervisor, disk_formats, default_disk_size' do
+    it 'requires a name, hypervisor, disk_formats, default_disk_size, stemcell_formats' do
       expect {
         Infrastructure::Base.new
-      }.to raise_error ArgumentError, 'missing keywords: name, hypervisor, disk_formats, default_disk_size, stemcell_formats'
+      }.to raise_error ArgumentError, 'missing keywords: :name, :hypervisor, :disk_formats, :default_disk_size, :stemcell_formats'
     end
 
     it 'defaults to no additional cloud properties' do
@@ -120,6 +121,21 @@ module Bosh::Stemcell
     it { should_not eq Infrastructure.for('vsphere') }
 
     it 'has openstack specific additional cloud properties' do
+      expect(subject.additional_cloud_properties).to eq({'auto_disk_config' => true})
+    end
+  end
+
+  describe Infrastructure::CloudStack do
+    its(:name)              { should eq('cloudstack') }
+    its(:hypervisor)        { should eq('xen') }
+    its(:default_disk_size) { should eq(3072) }
+    its(:disk_formats) {should eq(['vhdx'])}
+    its(:stemcell_formats)  { should eq(['cloudstack-vhdx']) }
+
+    it { should eq Infrastructure.for('cloudstack') }
+    it { should_not eq Infrastructure.for('vsphere') }
+
+    it 'has cloudstack specific additional cloud properties' do
       expect(subject.additional_cloud_properties).to eq({'auto_disk_config' => true})
     end
   end

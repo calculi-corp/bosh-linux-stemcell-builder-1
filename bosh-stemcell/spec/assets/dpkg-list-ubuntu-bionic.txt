@@ -52,8 +52,6 @@ dmsetup
 dnsutils
 dpkg
 dpkg-dev
-dracut
-dracut-core
 e2fsprogs
 eject
 fdisk
@@ -407,6 +405,7 @@ rsync
 rsyslog
 rsyslog-gnutls
 rsyslog-mmjsonparse
+rsyslog-mmnormalize
 rsyslog-relp
 runit
 scsitools
