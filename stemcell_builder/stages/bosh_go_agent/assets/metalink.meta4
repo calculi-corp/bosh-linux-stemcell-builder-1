@@ -5,7 +5,7 @@
     <hash type="sha-1">88e012ac60553a65753ec72564de422f974531ab</hash>
     <hash type="md5">ee5dc35c0cb34169fee661bb4b15342b</hash>
     <size>15784524</size>
-    <url>https://guide-rails-calculi-global.s3-us-west-2.amazonaws.com/bosh-agent/bosh-agent-2.411.0-gr-linux-amd64</url>
+    <url>https://guide-rails-calculi-global.s3.us-west-2.amazonaws.com/bosh-agent/bosh-agent-2.411.0-gr-linux-amd64</url>
     <version>2.411.0-gr</version>
   </file>
   <file name="bosh-agent-2.411.0-windows-amd64.exe">
