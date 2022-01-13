@@ -135,7 +135,7 @@ module Bosh::Stemcell
         super(
           name: 'aws',
           hypervisor: 'xen',
-          default_disk_size: 3072,
+          default_disk_size: 6144,
           disk_formats: ['raw'],
           stemcell_formats: ['aws-raw']
         )
@@ -166,7 +166,7 @@ module Bosh::Stemcell
       def initialize
         super(name: 'google',
         hypervisor: 'kvm',
-        default_disk_size: 3072,
+        default_disk_size: 6144,
         disk_formats: ['rawdisk'],
         stemcell_formats: ['google-rawdisk']
       )
@@ -198,7 +198,7 @@ module Bosh::Stemcell
         super(
           name: 'azure',
           hypervisor: 'hyperv',
-          default_disk_size: 3072,
+          default_disk_size: 6144,
           disk_formats: ['vhd'],
           stemcell_formats: ['azure-vhd']
         )

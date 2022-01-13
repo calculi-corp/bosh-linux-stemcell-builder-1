@@ -72,6 +72,29 @@ if [ ${DISTRIB_CODENAME} == 'bionic' ]; then
   install -m0750 "${chroot}/etc/runit/2" "${chroot}/usr/sbin/runsvdir-start"
 fi
 
+# Due to a known bug with curl 7.58.0 (https://bugs.launchpad.net/ubuntu/+source/curl/+bug/1833198), which comes as the default curl version
+# for ubuntu-bionic, we will install curl 7.74.0
+run_in_chroot $chroot "
+  cd /tmp
+
+  if [ ${DISTRIB_CODENAME} == 'bionic' ]; then
+    apt install -y wget build-essential openssl libssl-dev libssh-dev zlib1g-dev libbrotli-dev brotli libkrb5-dev libldap2-dev librtmp-dev libpsl-dev libnghttp2-dev zlib1g-dev zlib1g
+    wget https://curl.se/download/curl-7.74.0.tar.gz
+    tar xzvf curl-7.74.0.tar.gz
+    cd curl-7.74.0
+    ./configure --with-ssl --with-zlib --with-gssapi --enable-ldap --enable-ldaps --with-libssh --with-nghttp2
+    make
+    make install
+    if [ -f /usr/bin/curl ]; then
+      unlink /usr/bin/curl
+    fi
+    ln -s /usr/local/bin/curl /usr/bin/curl
+    ldconfig
+    cd ..
+    rm -rf curl-7.74.0*
+  fi
+"
+
 cp "$(dirname "$0")/assets/runit.service" "${chroot}/lib/systemd/system/"
 run_in_chroot "${chroot}" "systemctl enable runit"
 run_in_chroot "${chroot}" "systemctl enable systemd-logind"
