@@ -9,6 +9,10 @@ download an external asset - `VMware-ovftool-*.bundle`. See **External Assets**
 for instructions on where to download it from. Please place that asset in
 `ci/docker` directory.
 
+**Sample Link to download to download the VMWare ovftool bundle**
+
+http://ftp.tucha13.net/pub/software/VMware-ovftool-4.1.0/VMware-ovftool-4.1.0-2459827-lin.x86_64.bundle
+
 If you already have a stemcell-building environment set up and ready, skip to
 the **Build Steps** section. Otherwise, follow one of these two methods before
 trying to run the commands in **Build Steps**.
@@ -17,6 +21,11 @@ trying to run the commands in **Build Steps**.
 
     host$ cd ci/docker
     host$ ./run os-image-stemcell-builder
+
+**To build a ubuntu-bionic stemcell run**
+
+    host$ cd ci/docker
+    host$ ./run os-image-stemcell-builder-bionic
 
 **If you are not running on Linux or you do not have Docker installed**, use
 `vagrant` to start a new VM which has Docker, and then change back into the
@@ -39,6 +48,12 @@ update your box, and try again...
 
     host$ vagrant destroy
     host$ vagrant box update
+
+**Export the following variables in your Linux environment before execution**
+
+    export LANG=en_US.UTF-8
+    export LANGUAGE=en_US.UTF-8
+    export LC_ALL=en_US.UTF-8
 
 ## Build Steps
 
